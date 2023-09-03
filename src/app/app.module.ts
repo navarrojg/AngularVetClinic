@@ -8,7 +8,12 @@ import { HeaderComponent } from './header/header.component';
 import { ImportantNotesComponent } from './important-notes/important-notes.component';
 
 @NgModule({
-  declarations: [AppComponent, PatientsComponent, HeaderComponent, ImportantNotesComponent],
+  declarations: [
+    AppComponent,
+    PatientsComponent,
+    HeaderComponent,
+    ImportantNotesComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
