@@ -10,6 +10,8 @@ import { PatientDetailComponent } from './patients/patient-detail/patient-detail
 import { PatientEditComponent } from './patients/patient-edit/patient-edit.component';
 import { PatientListComponent } from './patients/patient-list/patient-list.component';
 import { PatientItemComponent } from './patients/patient-list/patient-item/patient-item.component';
+import { MedicineNeedsListComponent } from './medicine-needs-list/medicine-needs-list.component';
+import { MedicineNeedsListEditComponent } from './medicine-needs-list/medicine-needs-list-edit/medicine-needs-list-edit.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { PatientItemComponent } from './patients/patient-list/patient-item/patie
     PatientEditComponent,
     PatientListComponent,
     PatientItemComponent,
+    MedicineNeedsListComponent,
+    MedicineNeedsListEditComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
