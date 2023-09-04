@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { PatientsComponent } from './patients/patients.component';
 import { HeaderComponent } from './header/header.component';
 import { ImportantNotesComponent } from './important-notes/important-notes.component';
+import { PatientDetailComponent } from './patients/patient-detail/patient-detail.component';
+import { PatientEditComponent } from './patients/patient-edit/patient-edit.component';
+import { PatientListComponent } from './patients/patient-list/patient-list.component';
+import { PatientItemComponent } from './patients/patient-list/patient-item/patient-item.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +17,10 @@ import { ImportantNotesComponent } from './important-notes/important-notes.compo
     PatientsComponent,
     HeaderComponent,
     ImportantNotesComponent,
+    PatientDetailComponent,
+    PatientEditComponent,
+    PatientListComponent,
+    PatientItemComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
