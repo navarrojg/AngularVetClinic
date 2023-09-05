@@ -6,6 +6,17 @@
 <hr>
 <div class="row">
     <div class="col-xs-12">
-        <app-patient-item></app-patient-item>
+        <!-- <app-patient-item></app-patient-item> -->
+        <a style="cursor: pointer;" class="list-group-item clearfix" *ngFor="let patient of patients">
+            <div class="pull-left">
+                <h4 class="list-group-item-heading">{{patient.name}}</h4>
+                <p class="list-group-item-text"> {{patient.age}} years old</p>
+                <p class="list-group-item-text"> {{patient.description}} </p>
+
+            </div>
+            <span class="pull-right">
+                <img [src]="patient.imagePath" alt="{{patient.name}}" class="img-responsive" style="max-height: 50px;">
+            </span>
+        </a>
     </div>
 </div>
