@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Patient } from '../../patient.model';
 
 @Component({
   selector: 'app-patient-item',
