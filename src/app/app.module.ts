@@ -12,6 +12,7 @@ import { PatientListComponent } from './patients/patient-list/patient-list.compo
 import { PatientItemComponent } from './patients/patient-list/patient-item/patient-item.component';
 import { MedicineNeedsListComponent } from './medicine-needs-list/medicine-needs-list.component';
 import { MedicineNeedsListEditComponent } from './medicine-needs-list/medicine-needs-list-edit/medicine-needs-list-edit.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MedicineNeedsListEditComponent } from './medicine-needs-list/medicine-n
     PatientItemComponent,
     MedicineNeedsListComponent,
     MedicineNeedsListEditComponent,
+    AuthComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
