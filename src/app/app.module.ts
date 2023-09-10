@@ -13,6 +13,7 @@ import { PatientItemComponent } from './patients/patient-list/patient-item/patie
 import { MedicineNeedsListComponent } from './medicine-needs-list/medicine-needs-list.component';
 import { MedicineNeedsListEditComponent } from './medicine-needs-list/medicine-needs-list-edit/medicine-needs-list-edit.component';
 import { AuthComponent } from './auth/auth.component';
+import { DropdownDirective } from './shared/dropdown.directive';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { AuthComponent } from './auth/auth.component';
     MedicineNeedsListComponent,
     MedicineNeedsListEditComponent,
     AuthComponent,
+    DropdownDirective,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
