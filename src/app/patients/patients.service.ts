@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 export class PatientsService {
   patientsChanged = new Subject<Patient[]>();
 
-  patients: Patient[] = [
+  private patients: Patient[] = [
     new Patient(
       'Bojack',
       6,
@@ -39,5 +39,9 @@ export class PatientsService {
 
   getPatients() {
     return this.patients.slice();
+  }
+
+  getPatient(index: number) {
+    return this.patients[index];
   }
 }
