@@ -14,4 +14,9 @@ export class MedicineNeedsListService {
   getMedicineList() {
     return this.medications.slice();
   }
+
+  addNewMedicine(medicine: Medicine) {
+    this.medications.push(medicine);
+    this.medecineChanged.next(this.medications.slice());
+  }
 }
