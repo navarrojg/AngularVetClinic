@@ -3,7 +3,7 @@
         <app-medicine-needs-list-edit></app-medicine-needs-list-edit>
         <hr>
         <ul class="list-group">
-            <a class="list-group-item" style="cursor: pointer;" *ngFor="let medicine of medications">
+            <a class="list-group-item" style="cursor: pointer;" *ngFor="let medicine of medicineList">
                 {{medicine.name}} | {{medicine.amount}} | {{medicine.frequency}}
             </a>
         </ul>
