@@ -28,5 +28,5 @@ export class PatientListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  onNewRecipe() {}
+  onNewPatient() {}
 }

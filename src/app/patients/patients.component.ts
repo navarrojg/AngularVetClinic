@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PatientsService } from './patients.service';
+import { Patient } from './patient.model';
 
 @Component({
   selector: 'app-patients',
@@ -6,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./patients.component.css'],
 })
 export class PatientsComponent implements OnInit {
-  constructor() {}
-  
-  ngOnInit(): void {}
+  selectedPatient;
+
+  constructor(private patientService: PatientsService) {}
+
+  ngOnInit() {
+    this.patientService.patientSelected.subscribe((patient: Patient) => {
+      this.selectedPatient = patient;
+    });
+  }
 }

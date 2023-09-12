@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class PatientsService {
   patientsChanged = new Subject<Patient[]>();
+  patientSelected = new Subject<Patient>()
 
   private patients: Patient[] = [
     new Patient(
