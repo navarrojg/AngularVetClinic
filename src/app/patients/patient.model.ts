@@ -3,6 +3,7 @@ import { Medicine } from '../shared/medicine.model';
 export class Patient {
   public name: string;
   public age: number;
+  public sex: string;
   public description: string;
   public imagePath: string;
   public bloodType: string;
@@ -11,6 +12,7 @@ export class Patient {
   constructor(
     name: string,
     age: number,
+    sex: string,
     desc: string,
     imagePath: string,
     bloodType: string,
@@ -18,6 +20,7 @@ export class Patient {
   ) {
     this.name = name;
     this.age = age;
+    this.sex = sex;
     this.description = desc;
     this.imagePath = imagePath;
     this.bloodType = bloodType;

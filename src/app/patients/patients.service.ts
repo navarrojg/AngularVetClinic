@@ -6,12 +6,13 @@ import { Subject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class PatientsService {
   patientsChanged = new Subject<Patient[]>();
-  patientSelected = new Subject<Patient>()
+  patientSelected = new Subject<Patient>();
 
   private patients: Patient[] = [
     new Patient(
       'Bojack',
       6,
+      'M',
       'broken left back leg',
       'https://horseyhooves.com/wp-content/uploads/2022/08/Beautiful-horse-running-in-a-grassy-field.jpg',
       'A+',
@@ -20,6 +21,7 @@ export class PatientsService {
     new Patient(
       'CrackerJack',
       4,
+      'M',
       'hips problem',
       'https://www.zooplus.pl/magazyn/wp-content/uploads/2022/05/kon-oldenburski-sylwetka-1024x683.jpeg',
       'A-',
@@ -28,6 +30,7 @@ export class PatientsService {
     new Patient(
       'Hope',
       9,
+      'F',
       'bitten by snake',
       'https://www.fizjoterapiakoni.com.pl/wp-content/uploads/2019/01/Czy-Tw%C3%B3j-ko%C5%84-potrzebuje-fizjo.jpg',
       'A-',
