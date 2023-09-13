@@ -20,4 +20,9 @@ export class MedicineNeedsListService {
     this.medications.push(medicine);
     this.medecineChanged.next(this.medications.slice());
   }
+
+  addMedications(meds: Medicine[]) {
+    this.medications.push(...meds);
+    this.medecineChanged.next(this.medications.slice());
+  }
 }

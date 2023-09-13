@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Patient } from '../patient.model';
 import { PatientsService } from '../patients.service';
+import { MedicineNeedsListService } from 'src/app/medicine-needs-list/medicine-needs-list.service';
 
 @Component({
   selector: 'app-patient-detail',
@@ -11,11 +12,18 @@ export class PatientDetailComponent implements OnInit {
   patient: Patient;
   id: number;
 
-  constructor(private patientService: PatientsService) {}
+  constructor(
+    private patientService: PatientsService,
+    private medicineService: MedicineNeedsListService
+  ) {}
 
   ngOnInit() {
     this.patientService.patientSelected.subscribe((patient: Patient) => {
       this.patient = patient;
     });
+  }
+
+  onAddNewMedicine() {
+    this.patientService.addMedsToList(this.patient.medicine);
   }
 }

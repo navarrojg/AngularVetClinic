@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Patient } from './patient.model';
 import { Medicine } from '../shared/medicine.model';
 import { Subject } from 'rxjs';
+import { MedicineNeedsListService } from '../medicine-needs-list/medicine-needs-list.service';
 
 @Injectable({ providedIn: 'root' })
 export class PatientsService {
@@ -41,11 +42,17 @@ export class PatientsService {
     ),
   ];
 
+  constructor(private medListService: MedicineNeedsListService) {}
+
   getPatients() {
     return this.patients.slice();
   }
 
   getPatient(index: number) {
     return this.patients[index];
+  }
+
+  addMedsToList(meds: Medicine[]) {
+    this.medListService.addMedications(meds);
   }
 }
