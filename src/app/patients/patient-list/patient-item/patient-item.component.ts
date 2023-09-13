@@ -13,7 +13,7 @@ export class PatientItemComponent implements OnInit {
 
   constructor(private patientService: PatientsService) {}
 
-  ngOnInit(): void {}
+  ngOnInit() {}
 
   onSeleceted() {
     this.patientService.patientSelected.next(this.patient);
