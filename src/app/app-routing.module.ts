@@ -4,7 +4,6 @@ import { PatientsComponent } from './patients/patients.component';
 import { ImportantNotesComponent } from './important-notes/important-notes.component';
 import { MedicineNeedsListComponent } from './medicine-needs-list/medicine-needs-list.component';
 import { AuthComponent } from './auth/auth.component';
-import { PatientStartComponent } from './patients/patient-start/patient-start.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/patients', pathMatch: 'full' },
