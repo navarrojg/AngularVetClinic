@@ -3,6 +3,7 @@ import { Patient } from '../patient.model';
 import { Medicine } from 'src/app/shared/medicine.model';
 import { Subscription } from 'rxjs';
 import { PatientsService } from '../patients.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-patient-list',
@@ -13,7 +14,10 @@ export class PatientListComponent implements OnInit, OnDestroy {
   patients: Patient[];
   subscription: Subscription;
 
-  constructor(private patientService: PatientsService) {}
+  constructor(
+    private patientService: PatientsService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.subscription = this.patientService.patientsChanged.subscribe(

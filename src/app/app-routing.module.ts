@@ -4,13 +4,23 @@ import { PatientsComponent } from './patients/patients.component';
 import { ImportantNotesComponent } from './important-notes/important-notes.component';
 import { MedicineNeedsListComponent } from './medicine-needs-list/medicine-needs-list.component';
 import { AuthComponent } from './auth/auth.component';
+import { PatientStartComponent } from './patients/patient-start/patient-start.component';
+import { PatientDetailComponent } from './patients/patient-detail/patient-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/patients', pathMatch: 'full' },
-  { path: 'patients', component: PatientsComponent },
+  {
+    path: 'patients',
+    component: PatientsComponent,
+    children: [
+      { path: '', component: PatientStartComponent },
+      { path: ':id', component: PatientDetailComponent },
+    ],
+  },
   { path: 'important-notes', component: ImportantNotesComponent },
   { path: 'medicine-needs-list', component: MedicineNeedsListComponent },
   { path: 'auth', component: AuthComponent },
+  { path: '**', redirectTo: '/patients', pathMatch: 'full' },
 ];
 
 @NgModule({
