@@ -6,6 +6,7 @@ import { MedicineNeedsListComponent } from './medicine-needs-list/medicine-needs
 import { AuthComponent } from './auth/auth.component';
 import { PatientStartComponent } from './patients/patient-start/patient-start.component';
 import { PatientDetailComponent } from './patients/patient-detail/patient-detail.component';
+import { PatientEditComponent } from './patients/patient-edit/patient-edit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/patients', pathMatch: 'full' },
@@ -14,7 +15,9 @@ const routes: Routes = [
     component: PatientsComponent,
     children: [
       { path: '', component: PatientStartComponent },
+      { path: 'new', component: PatientEditComponent },
       { path: ':id', component: PatientDetailComponent },
+      { path: ':id/edit', component: PatientEditComponent },
     ],
   },
   { path: 'important-notes', component: ImportantNotesComponent },
