@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Patient } from '../patient.model';
 import { PatientsService } from '../patients.service';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-patient-detail',
@@ -16,7 +16,8 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
 
   constructor(
     private patientService: PatientsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -36,5 +37,9 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
 
   onAddNewMedicine() {
     this.patientService.addMedsToList(this.patient.medicine);
+  }
+
+  onEditPatient() {
+    this.router.navigate(['edit'], { relativeTo: this.route });
   }
 }
