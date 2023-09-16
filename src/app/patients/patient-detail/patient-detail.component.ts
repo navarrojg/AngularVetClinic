@@ -42,4 +42,8 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
   onEditPatient() {
     this.router.navigate(['edit'], { relativeTo: this.route });
   }
+
+  onDeletePatient() {
+    this.patientService.removePatient(this.id);
+  }
 }

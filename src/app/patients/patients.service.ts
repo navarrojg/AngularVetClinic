@@ -55,4 +55,8 @@ export class PatientsService {
   addMedsToList(meds: Medicine[]) {
     this.medListService.addMedications(meds);
   }
+
+  removePatient(index: number) {
+    this.patients.splice(index, 1);
+  }
 }
