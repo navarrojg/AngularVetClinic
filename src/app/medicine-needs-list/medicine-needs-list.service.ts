@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class MedicineNeedsListService {
   medecineChanged = new Subject<Medicine[]>();
+  startedEditing = new Subject<number>();
 
   private medications = [
     new Medicine('Vicodin', 2, 'two times per day'),
@@ -21,8 +22,22 @@ export class MedicineNeedsListService {
     this.medecineChanged.next(this.medications.slice());
   }
 
+  getMedicine(index: number) {
+    return this.medications[index];
+  }
+
+  updateMedicine(index: number, newMedicine: Medicine) {
+    this.medications[index] = newMedicine;
+    this.medecineChanged.next(this.medications.slice());
+  }
+
   addMedications(meds: Medicine[]) {
     this.medications.push(...meds);
+    this.medecineChanged.next(this.medications.slice());
+  }
+
+  removeMedicine(index: number) {
+    this.medications.splice(index, 1);
     this.medecineChanged.next(this.medications.slice());
   }
 }

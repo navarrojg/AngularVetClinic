@@ -3,7 +3,7 @@
         <app-medicine-needs-list-edit></app-medicine-needs-list-edit>
         <hr>
         <ul class="list-group">
-            <a class="list-group-item" style="cursor: pointer;" *ngFor="let medicine of medicineList">
+            <a class="list-group-item" style="cursor: pointer;" *ngFor="let medicine of medicineList; let i = index" (click)="onEditItem(i)">
                 {{medicine.name}} | {{medicine.amount}} | {{medicine.frequency}}
             </a>
         </ul>
