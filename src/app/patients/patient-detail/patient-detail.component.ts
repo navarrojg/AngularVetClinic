@@ -21,10 +21,6 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    // this.patientService.patientSelected.subscribe((patient: Patient) => {
-    //   this.patient = patient;
-    // });
-
     this.subscription = this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
       this.patient = this.patientService.getPatient(this.id);

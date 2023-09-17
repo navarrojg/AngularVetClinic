@@ -3,11 +3,11 @@ import { Patient } from './patient.model';
 import { Medicine } from '../shared/medicine.model';
 import { Subject } from 'rxjs';
 import { MedicineNeedsListService } from '../medicine-needs-list/medicine-needs-list.service';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class PatientsService {
   patientsChanged = new Subject<Patient[]>();
-
 
   private patients: Patient[] = [
     new Patient(
@@ -42,7 +42,10 @@ export class PatientsService {
     ),
   ];
 
-  constructor(private medListService: MedicineNeedsListService) {}
+  constructor(
+    private medListService: MedicineNeedsListService,
+    private router: Router
+  ) {}
 
   getPatients() {
     return this.patients.slice();
@@ -58,5 +61,7 @@ export class PatientsService {
 
   removePatient(index: number) {
     this.patients.splice(index, 1);
+    this.patientsChanged.next(this.patients.slice());
+    this.router.navigate(['../']);
   }
 }
