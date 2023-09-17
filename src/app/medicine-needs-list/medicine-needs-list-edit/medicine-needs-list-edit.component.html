@@ -13,13 +13,15 @@
                 </div>
                 <div class="col-sm-2 form-gruop">
                     <label for="frequency">Frequency</label>
-                    <input type="text" id="frequency" class="form-control" ngModel name="frequency" required>
+                    <input type="text" id="frequency" class="form-control" ngModel name="frequency" required
+                        style="width: 400px;">
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
                         <button class="btn btn-success" type="submit" [disabled]="!f.valid">{{editMode ? 'Update' :
                             'Add'}}</button>
-                        <button class="btn btn-danger" type="button" (click)="onDelete()">Remove</button>
+                        <button *ngIf="editMode" class="btn btn-danger" type="button"
+                            (click)="onDelete()">Remove</button>
                         <button class="btn btn-warning" type="button" (click)="onClear()">Clear</button>
 
                     </div>
