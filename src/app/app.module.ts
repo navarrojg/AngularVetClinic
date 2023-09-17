@@ -15,6 +15,7 @@ import { MedicineNeedsListEditComponent } from './medicine-needs-list/medicine-n
 import { AuthComponent } from './auth/auth.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { PatientStartComponent } from './patients/patient-start/patient-start.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { PatientStartComponent } from './patients/patient-start/patient-start.co
     DropdownDirective,
     PatientStartComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
