@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./medicine-needs-list-edit.component.css'],
 })
 export class MedicineNeedsListEditComponent implements OnInit, OnDestroy {
-  @ViewChild('f', { static: false }) slForm: NgForm;
+  @ViewChild('f', { static: false }) mlForm: NgForm;
   editMode = false;
   editedItemIndex: number;
   editedItem: Medicine;
@@ -30,7 +30,7 @@ export class MedicineNeedsListEditComponent implements OnInit, OnDestroy {
         this.editedItemIndex = index;
         this.editMode = true;
         this.editedItem = this.medicineService.getMedicine(index);
-        this.slForm.setValue({
+        this.mlForm.setValue({
           name: this.editedItem.name,
           amount: this.editedItem.amount,
           frequency: this.editedItem.frequency,
@@ -57,7 +57,7 @@ export class MedicineNeedsListEditComponent implements OnInit, OnDestroy {
   }
 
   onClear() {
-    this.slForm.reset();
+    this.mlForm.reset();
     this.editMode = false;
   }
 

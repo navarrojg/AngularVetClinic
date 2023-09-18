@@ -64,4 +64,14 @@ export class PatientsService {
     this.patientsChanged.next(this.patients.slice());
     this.router.navigate(['../']);
   }
+
+  updatePatient(index: number, newPatient: Patient) {
+    this.patients[index] = newPatient;
+    this.patientsChanged.next(this.patients.slice());
+  }
+
+  addPatient(newPatient: Patient) {
+    this.patients.push(newPatient);
+    this.patientsChanged.next(this.patients.slice());
+  }
 }
