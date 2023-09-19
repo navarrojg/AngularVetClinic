@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Patient } from '../patient.model';
@@ -10,12 +16,12 @@ import { Subscription } from 'rxjs';
   templateUrl: './patient-edit.component.html',
   styleUrls: ['./patient-edit.component.css'],
 })
-export class PatientEditComponent implements OnInit, OnDestroy {
+export class PatientEditComponent implements OnInit, OnDestroy, AfterViewInit {
   editmode = false;
   id: number;
-  @ViewChild('f', { static: false }) pForm: NgForm;
   editPatient: Patient;
   subscription: Subscription;
+  @ViewChild('patientForm', { static: false }) pForm: NgForm;
 
   constructor(
     private route: ActivatedRoute,
@@ -24,14 +30,18 @@ export class PatientEditComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    console.log(this.pForm);
     this.subscription = this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
       this.editmode = params['id'] != null;
+    });
+  }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+      this.editPatient = this.patientService.getPatient(this.id);
+      console.log(this.editPatient.medicine);
       if (this.editmode) {
-        this.editPatient = this.patientService.getPatient(this.id);
-        console.log(this.editPatient);
-        console.log(this.editmode);
-        console.log(this.id);
         this.pForm.setValue({
           name: this.editPatient.name,
           age: this.editPatient.age,
@@ -39,7 +49,6 @@ export class PatientEditComponent implements OnInit, OnDestroy {
           desc: this.editPatient.description,
           imagePath: this.editPatient.imagePath,
           bloodType: this.editPatient.bloodType,
-          // medicine: this.editPatient.medicine,
         });
       }
     });
@@ -70,7 +79,7 @@ export class PatientEditComponent implements OnInit, OnDestroy {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy(){
     this.subscription.unsubscribe();
   }
 }
