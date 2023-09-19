@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Patient } from '../patient.model';
 import { PatientsService } from '../patients.service';
@@ -13,9 +13,13 @@ import { Subscription } from 'rxjs';
 export class PatientEditComponent implements OnInit, OnDestroy {
   editmode = false;
   id: number;
-  @ViewChild('f', { static: false }) pForm: NgForm;
-  editPatient: Patient;
+  patientForm: FormGroup;
+  // editPatient: Patient;
   subscription: Subscription;
+
+  get medsControls() {
+    return (this.patientForm.get('meds') as FormArray).controls;
+  }
 
   constructor(
     private route: ActivatedRoute,
@@ -27,48 +31,57 @@ export class PatientEditComponent implements OnInit, OnDestroy {
     this.subscription = this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
       this.editmode = params['id'] != null;
-      if (this.editmode) {
-        this.editPatient = this.patientService.getPatient(this.id);
-        console.log(this.editPatient);
-        console.log(this.editmode);
-        console.log(this.id);
-        this.pForm.setValue({
-          name: this.editPatient.name,
-          age: this.editPatient.age,
-          sex: this.editPatient.sex,
-          desc: this.editPatient.description,
-          imagePath: this.editPatient.imagePath,
-          bloodType: this.editPatient.bloodType,
-          // medicine: this.editPatient.medicine,
-        });
-      }
+      this.initForm();
     });
   }
 
-  onSubmit(form: NgForm) {
-    const value = form.value;
-    const newPatient = new Patient(
-      value.name,
-      value.age,
-      value.sex,
-      value.desc,
-      value.imagePath,
-      value.bloodType,
-      value.medicine
-    );
+  private initForm() {
+    let patientName = '';
+    let patientAge;
+    let patientSex = '';
+    let patientDesc = '';
+    let patientImagePath = '';
+    let patientBloodType = '';
+    let patientMeds = new FormArray([]);
+
     if (this.editmode) {
-      this.patientService.updatePatient(this.id, newPatient);
-    } else {
-      this.patientService.addPatient(newPatient);
+      const patient = this.patientService.getPatient(this.id);
+      patientName = patient.name;
+      patientAge = patient.age;
+      patientSex = patient.sex;
+      patientDesc = patient.description;
+      patientImagePath = patient.imagePath;
+      patientBloodType = patient.bloodType;
+      if (patient['medicine']) {
+        for (let med of patient.medicine) {
+          patientMeds.push(
+            new FormGroup({
+              name: new FormControl(med.name),
+              amount: new FormControl(med.amount),
+              frequency: new FormControl(med.frequency),
+            })
+          );
+        }
+      }
     }
-    this.editmode = false;
-    form.reset();
-    this.router.navigate(['../'], { relativeTo: this.route });
+    this.patientForm = new FormGroup({
+      name: new FormControl(patientName),
+      age: new FormControl(patientAge),
+      sex: new FormControl(patientSex),
+      desc: new FormControl(patientSex),
+      imagePath: new FormControl(patientImagePath),
+      bloodType: new FormControl(patientBloodType),
+      meds: patientMeds,
+    });
   }
+
+  onSubmit() {}
 
   onCancel() {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
+
+  onDeleteMed(index: number) {}
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

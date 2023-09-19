@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-xs-12">
-        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        <form [formGroup]="patientForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col-xs-12">
                     <div class="group-btn">
@@ -13,7 +13,7 @@
                     <div class="col-xs-12">
                         <div class="form-group">
                             <label for="name">Patient name:</label>
-                            <input type="text" class="form-control" id="name" ngModel name="name">
+                            <input type="text" class="form-control" id="name" formControlName="name">
                         </div>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
                     <div class="col-xs-12">
                         <div class="form-group">
                             <label for="age">Age:</label>
-                            <input type="number" class="form-control" id="age" ngModel name="age">
+                            <input type="number" class="form-control" id="age" formControlName="age">
                         </div>
                     </div>
                 </div>
@@ -29,9 +29,9 @@
                     <div class="col-xs-12">
                         <div class="form-group">
                             <label for="sex">Sex:</label>
-                            <select id="sex" class="form-control" ngModel name="sex">
-                                <option value="m">M</option>
-                                <option value="f">F</option>
+                            <select id="sex" class="form-control" formControlName="sex">
+                                <option value="M">M</option>
+                                <option value="F">F</option>
                             </select>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                     <div class="col-xs-12">
                         <div class="form-group">
                             <label for="desc">Description:</label>
-                            <textarea type="text" class="form-control" id="desc" ngModel name="desc"></textarea>
+                            <textarea type="text" class="form-control" id="desc" formControlName="desc"></textarea>
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <div class="col-xs-12">
                         <div class="form-group">
                             <label for="imagePath">ImagePath:</label>
-                            <input type="text" class="form-control" id="imagePath" ngModel name="imagePath">
+                            <input type="text" class="form-control" id="imagePath" formControlName="imagePath">
                         </div>
                     </div>
                 </div>
@@ -56,34 +56,35 @@
                     <div class="col-xs-12">
                         <div class="form-group">
                             <label for="bloodType">Blood type:</label>
-                            <select id="bloodType" class="form-control" ngModel name="bloodType">
+                            <select id="bloodType" class="form-control" formControlName="bloodType">
                                 <option value="undefined" selected>Undefined</option>
-                                <option value="a-minus">A-</option>
-                                <option value="a-plus">A+</option>
-                                <option value="b-plus">B-</option>
-                                <option value="b-plus">B+</option>
-                                <option value="ab-minus">AB-</option>
-                                <option value="ab-plus">AB+</option>
-                                <option value="zero-minus">0-</option>
-                                <option value="zero-plus">0+</option>
+                                <option value="A-">A-</option>
+                                <option value="A+">A+</option>
+                                <option value="B-">B-</option>
+                                <option value="B+">B+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="0-">0-</option>
+                                <option value="0+">0+</option>
                             </select>
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
-                    <div class="col-xs-12">
-                        <div class="row">
+                    <div class="col-xs-12" formArrayName="meds">
+                        <div class="row" *ngFor="let medCtrl of medsControls; let i = index" [formGroupName]="i">
                             <div class="col-xs-4">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" formControlName="name">
                             </div>
                             <div class="col-xs-2">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" formControlName="amount">
                             </div>
                             <div class="col-xs-4">
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" formControlName="frequency">
                             </div>
                             <div class="col-xs-2">
-                                <button type="button" class="btn btn-danger">X</button>
+                                <button type="button" class="btn btn-danger" (click)="onDeleteMed(i)">X</button>
                             </div>
                         </div>
                     </div>
