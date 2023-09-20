@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormArray, FormControl, FormGroup, NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Patient } from '../patient.model';
 import { PatientsService } from '../patients.service';
 import { Subscription } from 'rxjs';
 
@@ -14,11 +13,10 @@ export class PatientEditComponent implements OnInit, OnDestroy {
   editmode = false;
   id: number;
   patientForm: FormGroup;
-  // editPatient: Patient;
   subscription: Subscription;
 
   get medsControls() {
-    return (this.patientForm.get('meds') as FormArray).controls;
+    return (<FormArray>this.patientForm.get('medicine')).controls;
   }
 
   constructor(
@@ -71,17 +69,37 @@ export class PatientEditComponent implements OnInit, OnDestroy {
       desc: new FormControl(patientSex),
       imagePath: new FormControl(patientImagePath),
       bloodType: new FormControl(patientBloodType),
-      meds: patientMeds,
+      medicine: patientMeds,
     });
   }
 
-  onSubmit() {}
+  onSubmit() {
+    if (this.editmode) {
+      this.patientService.updatePatient(this.id, this.patientForm.value);
+    } else {
+      this.patientService.addPatient(this.patientForm.value);
+    }
+    console.log(this.patientForm);
+    this.onCancel();
+  }
 
   onCancel() {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
-  onDeleteMed(index: number) {}
+  onAddNewMed() {
+    (<FormArray>this.patientForm.get('medicine')).push(
+      new FormGroup({
+        name: new FormControl(null),
+        amount: new FormControl(null),
+        frequency: new FormControl(null),
+      })
+    );
+  }
+
+  onDeleteMed(index: number) {
+    (<FormArray>this.patientForm.get('medicine')).removeAt(index);
+  }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

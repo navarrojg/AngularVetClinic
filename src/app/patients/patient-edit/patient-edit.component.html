@@ -72,8 +72,8 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-xs-12" formArrayName="meds">
-                        <div class="row" *ngFor="let medCtrl of medsControls; let i = index" [formGroupName]="i">
+                    <div class="col-xs-12" formArrayName="medicine">
+                        <div class="row" *ngFor="let medCtrl of medsControls; let i = index" [formGroupName]="i" style="margin-bottom: 10px;">
                             <div class="col-xs-4">
                                 <input type="text" class="form-control" formControlName="name">
                             </div>
@@ -92,7 +92,7 @@
                 <hr style="border-top: 1px solid black;">
                 <div class="row">
                     <div class="col-xs-12">
-                        <button type="button" class="btn btn-success">Add Medicine</button>
+                        <button type="button" class="btn btn-success" (click)="onAddNewMed()">Add Medicine</button>
                     </div>
                 </div>
             </div>
