@@ -79,7 +79,6 @@ export class PatientEditComponent implements OnInit, OnDestroy {
     } else {
       this.patientService.addPatient(this.patientForm.value);
     }
-    console.log(this.patientForm);
     this.onCancel();
   }
 
