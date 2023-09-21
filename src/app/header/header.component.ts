@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Patient } from '../patients/patient.model';
-import { PatientsService } from '../patients/patients.service';
-import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { DataStorageService } from '../shared/data-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -10,43 +9,11 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  constructor(
-    private http: HttpClient,
-    private patientService: PatientsService
-  ) {}
+  constructor(private dsService: DataStorageService) {}
 
-  patientList: Patient[] = this.patientService.getPatients();
-
-  onSaveData(patientList: Patient[]) {
-    this.http
-      .post(
-        'https://vetclinic-b2f5e-default-rtdb.firebaseio.com/posts.json',
-        patientList
-      )
-      .subscribe((response) => {
-        console.log(response);
-      });
+  onSaveData() {
+    this.dsService.storePatients();
   }
 
-  onFetchData() {
-    this.fetchPosts();
-  }
-
-  private fetchPosts() {
-    this.http
-      .get('https://vetclinic-b2f5e-default-rtdb.firebaseio.com/posts.json')
-      .pipe(
-        map((responseData) => {
-          const postsArray = [];
-          for (const key in responseData) {
-            if (responseData.hasOwnProperty(key)) {
-              postsArray.push({ ...responseData[key], id: key });
-            }
-          }
-        })
-      )
-      .subscribe((posts) => {
-        console.log(posts);
-      });
-  }
+  onFetchData() {}
 }
