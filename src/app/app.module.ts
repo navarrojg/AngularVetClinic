@@ -16,6 +16,7 @@ import { AuthComponent } from './auth/auth.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { PatientStartComponent } from './patients/patient-start/patient-start.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DropdownDirective,
     PatientStartComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
