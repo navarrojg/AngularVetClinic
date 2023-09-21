@@ -15,5 +15,7 @@ export class HeaderComponent {
     this.dsService.storePatients();
   }
 
-  onFetchData() {}
+  onFetchData() {
+    this.dsService.fetchPatients();
+  }
 }

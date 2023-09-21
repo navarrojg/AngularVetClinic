@@ -47,6 +47,11 @@ export class PatientsService {
     private router: Router
   ) {}
 
+  setPatients(patients: Patient[]) {
+    this.patients = patients;
+    this.patientsChanged.next(this.patients.slice());
+  }
+
   getPatients() {
     return this.patients.slice();
   }

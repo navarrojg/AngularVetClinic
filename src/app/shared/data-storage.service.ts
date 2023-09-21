@@ -11,21 +11,13 @@ export class DataStorageService {
     private patientService: PatientsService
   ) {}
 
-  private fetchPosts() {
+  fetchPatients() {
     this.http
-      .get('https://vetclinic-b2f5e-default-rtdb.firebaseio.com/posts.json')
-      .pipe(
-        map((responseData) => {
-          const postsArray = [];
-          for (const key in responseData) {
-            if (responseData.hasOwnProperty(key)) {
-              postsArray.push({ ...responseData[key], id: key });
-            }
-          }
-        })
+      .get<Patient[]>(
+        'https://vetclinic-b2f5e-default-rtdb.firebaseio.com/patients.json'
       )
-      .subscribe((posts) => {
-        console.log(posts);
+      .subscribe((patients) => {
+        this.patientService.setPatients(patients);
       });
   }
 
