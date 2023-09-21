@@ -66,7 +66,7 @@ export class PatientEditComponent implements OnInit, OnDestroy {
       name: new FormControl(patientName),
       age: new FormControl(patientAge),
       sex: new FormControl(patientSex),
-      desc: new FormControl(patientSex),
+      description: new FormControl(patientDesc),
       imagePath: new FormControl(patientImagePath),
       bloodType: new FormControl(patientBloodType),
       medicine: patientMeds,
