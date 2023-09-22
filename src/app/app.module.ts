@@ -17,6 +17,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import { PatientStartComponent } from './patients/patient-start/patient-start.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ArchiveComponent } from './archive/archive.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     AuthComponent,
     DropdownDirective,
     PatientStartComponent,
+    ArchiveComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { PatientStartComponent } from './patients/patient-start/patient-start.co
 import { PatientDetailComponent } from './patients/patient-detail/patient-detail.component';
 import { PatientEditComponent } from './patients/patient-edit/patient-edit.component';
 import { PatientResolverService } from './patients/patient-resolver.service';
+import { ArchiveComponent } from './archive/archive.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/patients', pathMatch: 'full' },
@@ -30,6 +31,7 @@ const routes: Routes = [
     ],
   },
   { path: 'important-notes', component: ImportantNotesComponent },
+  { path: 'archive', component: ArchiveComponent },
   { path: 'medicine-needs-list', component: MedicineNeedsListComponent },
   { path: 'auth', component: AuthComponent },
   { path: '**', redirectTo: '/patients', pathMatch: 'full' },
