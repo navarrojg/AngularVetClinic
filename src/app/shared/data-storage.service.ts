@@ -15,7 +15,11 @@ export class DataStorageService {
     this.http
       .get<Patient[]>(
         'https://vetclinic-b2f5e-default-rtdb.firebaseio.com/patients.json'
-      )
+      ).pipe(map(patients=>{
+        return patients.map(patient=>{
+          return {...patient, medicine: patient.medicine ? patient.medicine : []}
+        })
+      }))
       .subscribe((patients) => {
         this.patientService.setPatients(patients);
       });
