@@ -16,6 +16,6 @@ export class HeaderComponent {
   }
 
   onFetchData() {
-    this.dsService.fetchPatients();
+    this.dsService.fetchPatients().subscribe();
   }
 }

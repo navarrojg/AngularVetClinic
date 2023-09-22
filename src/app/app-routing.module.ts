@@ -7,6 +7,7 @@ import { AuthComponent } from './auth/auth.component';
 import { PatientStartComponent } from './patients/patient-start/patient-start.component';
 import { PatientDetailComponent } from './patients/patient-detail/patient-detail.component';
 import { PatientEditComponent } from './patients/patient-edit/patient-edit.component';
+import { PatientResolverService } from './patients/patient-resolver.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/patients', pathMatch: 'full' },
@@ -16,8 +17,16 @@ const routes: Routes = [
     children: [
       { path: '', component: PatientStartComponent },
       { path: 'new', component: PatientEditComponent },
-      { path: ':id', component: PatientDetailComponent },
-      { path: ':id/edit', component: PatientEditComponent },
+      {
+        path: ':id',
+        component: PatientDetailComponent,
+        resolve: [PatientResolverService],
+      },
+      {
+        path: ':id/edit',
+        component: PatientEditComponent,
+        resolve: [PatientResolverService],
+      },
     ],
   },
   { path: 'important-notes', component: ImportantNotesComponent },

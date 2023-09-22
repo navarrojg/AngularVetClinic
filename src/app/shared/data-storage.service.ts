@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PatientsService } from '../patients/patients.service';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Patient } from '../patients/patient.model';
 
 @Injectable({ providedIn: 'root' })
@@ -12,17 +12,23 @@ export class DataStorageService {
   ) {}
 
   fetchPatients() {
-    this.http
+    return this.http
       .get<Patient[]>(
         'https://vetclinic-b2f5e-default-rtdb.firebaseio.com/patients.json'
-      ).pipe(map(patients=>{
-        return patients.map(patient=>{
-          return {...patient, medicine: patient.medicine ? patient.medicine : []}
+      )
+      .pipe(
+        map((patients) => {
+          return patients.map((patient) => {
+            return {
+              ...patient,
+              medicine: patient.medicine ? patient.medicine : [],
+            };
+          });
+        }),
+        tap((patients) => {
+          this.patientService.setPatients(patients);
         })
-      }))
-      .subscribe((patients) => {
-        this.patientService.setPatients(patients);
-      });
+      );
   }
 
   storePatients() {
