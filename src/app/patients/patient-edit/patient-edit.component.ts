@@ -1,5 +1,11 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormArray, FormControl, FormGroup, NgForm } from '@angular/forms';
+import {
+  FormArray,
+  FormControl,
+  FormGroup,
+  NgForm,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { PatientsService } from '../patients.service';
 import { Subscription } from 'rxjs';
@@ -63,12 +69,15 @@ export class PatientEditComponent implements OnInit, OnDestroy {
       }
     }
     this.patientForm = new FormGroup({
-      name: new FormControl(patientName),
-      age: new FormControl(patientAge),
-      sex: new FormControl(patientSex),
-      description: new FormControl(patientDesc),
+      name: new FormControl(patientName, Validators.required),
+      age: new FormControl(patientAge, [
+        Validators.required,
+        Validators.pattern(/^[1-9]+[0-9]*$/),
+      ]),
+      sex: new FormControl(patientSex, Validators.required),
+      description: new FormControl(patientDesc, Validators.required),
       imagePath: new FormControl(patientImagePath),
-      bloodType: new FormControl(patientBloodType),
+      bloodType: new FormControl(patientBloodType, Validators.required),
       medicine: patientMeds,
     });
   }
@@ -89,9 +98,9 @@ export class PatientEditComponent implements OnInit, OnDestroy {
   onAddNewMed() {
     (<FormArray>this.patientForm.get('medicine')).push(
       new FormGroup({
-        name: new FormControl(null),
-        amount: new FormControl(null),
-        frequency: new FormControl(null),
+        name: new FormControl(null, Validators.required),
+        amount: new FormControl(null, Validators.required),
+        frequency: new FormControl(null, Validators.required),
       })
     );
   }
