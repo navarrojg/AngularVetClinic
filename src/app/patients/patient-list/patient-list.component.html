@@ -4,18 +4,15 @@
     </div>
 </div>
 <hr>
-<div *ngIf="isFetching" class="row">
-    <div class="col-md-12">
-        <div class="lds-ring">
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="lds-ring" *ngIf="isFetching">
             <div></div>
             <div></div>
             <div></div>
             <div></div>
         </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
         <app-patient-item *ngFor="let patientEl of patients; let i = index" [patient]="patientEl"
             [index]="i"></app-patient-item>
     </div>
