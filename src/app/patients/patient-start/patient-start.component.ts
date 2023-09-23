@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PatientsService } from '../patients.service';
 import { Subscription } from 'rxjs';
 import { Patient } from '../patient.model';
+import { DataStorageService } from 'src/app/shared/data-storage.service';
 
 @Component({
   selector: 'app-patient-start',
@@ -13,29 +14,20 @@ export class PatientStartComponent implements OnInit, OnDestroy {
   patients: Patient[];
   subscription: Subscription;
 
-  constructor(private patientService: PatientsService) {}
+  constructor(
+    private patientService: PatientsService,
+    private ds: DataStorageService
+  ) {}
   ngOnInit() {
-    // this.subscription = this.patientService.patientsChanged.subscribe(
-    //   (patients: Patient[]) => {
-    //     if (patients.length > 0) {
-    //       this.arePatients = true;
-    //       console.log(patients + ' patList');
-    //       console.log('patients length: ' + patients.length);
-    //     }
-    //   }
-    // );
-    // console.log(this.arePatients + ' arePatients');
-    this.arePatients = false;
-    this.subscription = this.patientService.patientsChanged.subscribe(
-      (patients: Patient[]) => {
-        this.patients = patients;
-        if (this.patients.length > 0) {
-          this.arePatients = true;
-        } else {
-          this.arePatients = false;
-        }
-      }
-    );
+    let patients = this.patientService.getPatients();
+    if (patients.length > 0) {
+      this.arePatients = true;
+    } else {
+      this.arePatients = false;
+    }
+    this.subscription = this.ds.isFetched.subscribe((isFetched: boolean) => {
+      this.arePatients = isFetched;
+    });
   }
 
   ngOnDestroy() {

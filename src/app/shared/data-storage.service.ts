@@ -3,9 +3,12 @@ import { Injectable } from '@angular/core';
 import { PatientsService } from '../patients/patients.service';
 import { map, tap } from 'rxjs/operators';
 import { Patient } from '../patients/patient.model';
+import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
+  isFetched = new Subject<boolean>();
+
   constructor(
     private http: HttpClient,
     private patientService: PatientsService
@@ -27,6 +30,7 @@ export class DataStorageService {
         }),
         tap((patients) => {
           this.patientService.setPatients(patients);
+          this.isFetched.next(true);
         })
       );
   }
