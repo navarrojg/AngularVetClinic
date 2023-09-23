@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class PatientListComponent implements OnInit, OnDestroy {
   patients: Patient[];
   subscription: Subscription;
+  isFetching = false;
 
   constructor(
     private patientService: PatientsService,
@@ -21,12 +22,14 @@ export class PatientListComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.isFetching = true;
     this.subscription = this.patientService.patientsChanged.subscribe(
       (patients: Patient[]) => {
         this.patients = patients;
       }
     );
     this.patients = this.patientService.getPatients();
+    this.isFetching = false;
   }
 
   ngOnDestroy() {
