@@ -18,6 +18,7 @@ import { PatientStartComponent } from './patients/patient-start/patient-start.co
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ArchiveComponent } from './archive/archive.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,8 @@ import { ArchiveComponent } from './archive/archive.component';
     DropdownDirective,
     PatientStartComponent,
     ArchiveComponent,
+    LoadingSpinnerComponent
+    
   ],
   imports: [
     BrowserModule,
