@@ -16,9 +16,10 @@ import { AuthComponent } from './auth/auth.component';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { PatientStartComponent } from './patients/patient-start/patient-start.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ArchiveComponent } from './archive/archive.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -36,8 +37,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     DropdownDirective,
     PatientStartComponent,
     ArchiveComponent,
-    LoadingSpinnerComponent
-    
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +46,13 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

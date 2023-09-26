@@ -17,29 +17,24 @@ export class DataStorageService {
   ) {}
 
   fetchPatients() {
-    return this.authSerive.user.pipe(
-      take(1),
-      exhaustMap((user) => {
-        return this.http.get<Patient[]>(
-          'https://vetclinic-b2f5e-default-rtdb.firebaseio.com/patients.json',
-          {
-            params: new HttpParams().set('auth', user.token),
-          }
-        );
-      }),
-      map((patients) => {
-        return patients.map((patient) => {
-          return {
-            ...patient,
-            medicine: patient.medicine ? patient.medicine : [],
-          };
-        });
-      }),
-      tap((patients) => {
-        this.patientService.setPatients(patients);
-        this.isFetched.next(true);
-      })
-    );
+    return this.http
+      .get<Patient[]>(
+        'https://vetclinic-b2f5e-default-rtdb.firebaseio.com/patients.json'
+      )
+      .pipe(
+        map((patients) => {
+          return patients.map((patient) => {
+            return {
+              ...patient,
+              medicine: patient.medicine ? patient.medicine : [],
+            };
+          });
+        }),
+        tap((patients) => {
+          this.patientService.setPatients(patients);
+          this.isFetched.next(true);
+        })
+      );
   }
 
   storePatients() {
