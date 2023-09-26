@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { DataStorageService } from '../shared/data-storage.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,8 @@ import { AuthService } from '../auth/auth.service';
 export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private dsService: DataStorageService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   isAuthenticated = false;
@@ -32,6 +34,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onFetchData() {
     this.dsService.fetchPatients().subscribe();
+  }
+
+  onlogout() {
+    this.authService.logout();
+    this.router.navigate(['/auth']);
   }
 
   ngOnDestroy() {
