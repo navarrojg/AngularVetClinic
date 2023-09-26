@@ -1,9 +1,10 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PatientsService } from '../patients/patients.service';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, take, exhaustMap } from 'rxjs/operators';
 import { Patient } from '../patients/patient.model';
 import { Subject } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class DataStorageService {
@@ -11,28 +12,34 @@ export class DataStorageService {
 
   constructor(
     private http: HttpClient,
-    private patientService: PatientsService
+    private patientService: PatientsService,
+    private authSerive: AuthService
   ) {}
 
   fetchPatients() {
-    return this.http
-      .get<Patient[]>(
-        'https://vetclinic-b2f5e-default-rtdb.firebaseio.com/patients.json'
-      )
-      .pipe(
-        map((patients) => {
-          return patients.map((patient) => {
-            return {
-              ...patient,
-              medicine: patient.medicine ? patient.medicine : [],
-            };
-          });
-        }),
-        tap((patients) => {
-          this.patientService.setPatients(patients);
-          this.isFetched.next(true);
-        })
-      );
+    return this.authSerive.user.pipe(
+      take(1),
+      exhaustMap((user) => {
+        return this.http.get<Patient[]>(
+          'https://vetclinic-b2f5e-default-rtdb.firebaseio.com/patients.json',
+          {
+            params: new HttpParams().set('auth', user.token),
+          }
+        );
+      }),
+      map((patients) => {
+        return patients.map((patient) => {
+          return {
+            ...patient,
+            medicine: patient.medicine ? patient.medicine : [],
+          };
+        });
+      }),
+      tap((patients) => {
+        this.patientService.setPatients(patients);
+        this.isFetched.next(true);
+      })
+    );
   }
 
   storePatients() {

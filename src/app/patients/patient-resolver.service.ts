@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {
-  ActivatedRoute,
   ActivatedRouteSnapshot,
   Resolve,
   RouterStateSnapshot,
