@@ -9,11 +9,13 @@ import { PatientDetailComponent } from './patients/patient-detail/patient-detail
 import { PatientEditComponent } from './patients/patient-edit/patient-edit.component';
 import { PatientResolverService } from './patients/patient-resolver.service';
 import { ArchiveComponent } from './archive/archive.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/patients', pathMatch: 'full' },
   {
     path: 'patients',
+    canActivate:[AuthGuard],
     component: PatientsComponent,
     children: [
       { path: '', component: PatientStartComponent },
