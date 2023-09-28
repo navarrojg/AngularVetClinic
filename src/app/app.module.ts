@@ -20,6 +20,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ArchiveComponent } from './archive/archive.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
+import { ArchiveItemComponent } from './archive/archive-item/archive-item.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
     PatientStartComponent,
     ArchiveComponent,
     LoadingSpinnerComponent,
+    ArchiveItemComponent,
   ],
   imports: [
     BrowserModule,
