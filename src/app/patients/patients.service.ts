@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 @Injectable({ providedIn: 'root' })
 export class PatientsService {
   patientsChanged = new Subject<Patient[]>();
+  archivedPatientsChanged = new Subject<Patient[]>();
 
   // private patients: Patient[] = [
   //   new Patient(
@@ -43,6 +44,8 @@ export class PatientsService {
   // ];
 
   private patients: Patient[] = [];
+
+  private archivedPatients: Patient[] = [];
 
   constructor(
     private medListService: MedicineNeedsListService,
@@ -80,5 +83,17 @@ export class PatientsService {
   addPatient(newPatient: Patient) {
     this.patients.push(newPatient);
     this.patientsChanged.next(this.patients.slice());
+  }
+
+  archivePatient(index: number) {
+    const newPatient = this.patients[index];
+    this.archivedPatients.push(newPatient);
+    this.archivedPatientsChanged.next(this.archivedPatients.slice());
+    this.removePatient(index);
+    this.patientsChanged.next(this.patients.slice());
+  }
+
+  getArchivePatinets() {
+    return this.archivedPatients.slice();
   }
 }

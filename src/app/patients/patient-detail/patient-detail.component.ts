@@ -42,4 +42,9 @@ export class PatientDetailComponent implements OnInit, OnDestroy {
   onDeletePatient() {
     this.patientService.removePatient(this.id);
   }
+
+  onArchivePatient() {
+    this.patientService.archivePatient(this.id);
+
+  }
 }
