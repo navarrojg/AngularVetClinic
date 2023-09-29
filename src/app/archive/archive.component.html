@@ -1,5 +1,5 @@
 <div class="row">
     <div class="col-xs-12">
-        <app-archive-item *ngFor="let archivePatienf of archivedPatients"></app-archive-item>
+        <app-archive-item *ngFor="let archivePatient of archivedPatients; let i = index" [archivedPatient]="archivePatient" [id]="i"></app-archive-item>
     </div>
 </div>
