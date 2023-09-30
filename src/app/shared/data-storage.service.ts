@@ -48,4 +48,15 @@ export class DataStorageService {
         console.log(response);
       });
   }
+  storeArchivedPatients() {
+    const patientsList: Patient[] = this.patientService.getArchivePatinets();
+    this.http
+      .put(
+        'https://vetclinic-b2f5e-default-rtdb.firebaseio.com/archivedPatients.json',
+        patientsList
+      )
+      .subscribe((response) => {
+        console.log(response);
+      });
+  }
 }
