@@ -3,6 +3,6 @@
   <div class="card-body">
     <h5 class="card-title">{{archivedPatient.name | uppercase}}</h5>
     <p class="card-text">{{archivedPatient.description | titlecase}}</p>
-    <a class="btn btn-primary" type="button">Details</a>
+    <a class="btn btn-primary" type="button" [routerLink]="[id]">Details</a>
   </div>
 </div>

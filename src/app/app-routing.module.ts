@@ -10,12 +10,13 @@ import { PatientEditComponent } from './patients/patient-edit/patient-edit.compo
 import { PatientResolverService } from './patients/patient-resolver.service';
 import { ArchiveComponent } from './archive/archive.component';
 import { AuthGuard } from './auth/auth.guard';
+import { ArchivedPatientDetailComponent } from './archive/archived-patient-detail/archived-patient-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/patients', pathMatch: 'full' },
   {
     path: 'patients',
-    canActivate:[AuthGuard],
+    canActivate: [AuthGuard],
     component: PatientsComponent,
     children: [
       { path: '', component: PatientStartComponent },
@@ -35,7 +36,13 @@ const routes: Routes = [
   { path: 'important-notes', component: ImportantNotesComponent },
   { path: 'archive', component: ArchiveComponent },
   { path: 'medicine-needs-list', component: MedicineNeedsListComponent },
-  { path: 'auth', component: AuthComponent },
+  {
+    path: 'auth',
+    component: AuthComponent,
+    children: [
+      { path: ':id', component: ArchivedPatientDetailComponent }
+    ],
+  },
   { path: '**', redirectTo: '/patients', pathMatch: 'full' },
 ];
 
