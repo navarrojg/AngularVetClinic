@@ -37,6 +37,7 @@ const routes: Routes = [
   { path: 'important-notes', component: ImportantNotesComponent },
   {
     path: 'archive',
+    canActivate: [AuthGuard],
     component: ArchiveComponent,
     children: [
       { path: '', component: ArchiveDesktopComponent },
@@ -44,10 +45,7 @@ const routes: Routes = [
     ],
   },
   { path: 'medicine-needs-list', component: MedicineNeedsListComponent },
-  {
-    path: 'auth',
-    component: AuthComponent,
-  },
+  { path: 'auth', component: AuthComponent },
   { path: '**', redirectTo: '/patients', pathMatch: 'full' },
 ];
 
