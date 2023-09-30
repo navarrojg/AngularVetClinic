@@ -21,6 +21,7 @@ import { ArchiveComponent } from './archive/archive.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { ArchiveItemComponent } from './archive/archive-item/archive-item.component';
+import { ArchivedPatientDetailComponent } from './archive/archived-patient-detail/archived-patient-detail.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ArchiveItemComponent } from './archive/archive-item/archive-item.compon
     ArchiveComponent,
     LoadingSpinnerComponent,
     ArchiveItemComponent,
+    ArchivedPatientDetailComponent,
   ],
   imports: [
     BrowserModule,

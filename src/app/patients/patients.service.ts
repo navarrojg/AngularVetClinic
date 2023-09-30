@@ -43,8 +43,8 @@ export class PatientsService {
   //   ),
   // ];
 
-  private archivedPatients: Patient[] =[
-        new Patient(
+  private archivedPatients: Patient[] = [
+    new Patient(
       'Bojack',
       6,
       'M',
@@ -74,7 +74,7 @@ export class PatientsService {
         new Medicine('Colaflex', 2, 'two times per day'),
       ]
     ),
-  ]
+  ];
 
   private patients: Patient[] = [];
 

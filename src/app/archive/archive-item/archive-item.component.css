@@ -2,4 +2,14 @@
   border-radius: 8px;
   overflow: hidden;
   margin: 0 10px;
+  transition: transform 0.3s;
+}
+
+.card-body {
+  padding: 5px 10px;
+  background-color: #fff;
+}
+
+.card:hover {
+  transform: scale(1.1);
 }
