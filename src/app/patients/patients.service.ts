@@ -134,4 +134,11 @@ export class PatientsService {
   getArchivedPatient(index: number) {
     return this.archivedPatients[index];
   }
+
+  moveBackPatientToPLfromArchive(index: number, patient: Patient) {
+    this.archivedPatients.splice(index, 1);
+    this.archivedPatientsChanged.next(this.archivedPatients.slice());
+    this.addPatient(patient);
+    this.patientsChanged.next(this.patients.slice());
+  }
 }

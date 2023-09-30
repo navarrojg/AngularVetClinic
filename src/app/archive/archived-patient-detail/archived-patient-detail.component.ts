@@ -30,5 +30,8 @@ export class ArchivedPatientDetailComponent implements OnInit {
     this.router.navigate(['../', { relativeTo: this.route }]);
   }
 
-  onMovingBacktoPL() {}
+  onMovingBacktoPL() {
+    this.patientService.moveBackPatientToPLfromArchive(this.id, this.patient);
+    this.onGoBack();
+  }
 }
