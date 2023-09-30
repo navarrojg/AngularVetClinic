@@ -118,6 +118,7 @@ export class PatientsService {
     this.patientsChanged.next(this.patients.slice());
   }
 
+  //archivePatients
   archivePatient(index: number) {
     const newPatient = this.patients[index];
     this.archivedPatients.push(newPatient);
@@ -128,5 +129,9 @@ export class PatientsService {
 
   getArchivePatinets() {
     return this.archivedPatients.slice();
+  }
+
+  getArchivedPatient(index: number) {
+    return this.archivedPatients[index];
   }
 }

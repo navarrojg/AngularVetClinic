@@ -11,6 +11,7 @@ import { PatientResolverService } from './patients/patient-resolver.service';
 import { ArchiveComponent } from './archive/archive.component';
 import { AuthGuard } from './auth/auth.guard';
 import { ArchivedPatientDetailComponent } from './archive/archived-patient-detail/archived-patient-detail.component';
+import { ArchiveDesktopComponent } from './archive/archive-desktop/archive-desktop.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/patients', pathMatch: 'full' },
@@ -34,14 +35,18 @@ const routes: Routes = [
     ],
   },
   { path: 'important-notes', component: ImportantNotesComponent },
-  { path: 'archive', component: ArchiveComponent },
+  {
+    path: 'archive',
+    component: ArchiveComponent,
+    children: [
+      { path: '', component: ArchiveDesktopComponent },
+      { path: ':id', component: ArchivedPatientDetailComponent },
+    ],
+  },
   { path: 'medicine-needs-list', component: MedicineNeedsListComponent },
   {
     path: 'auth',
     component: AuthComponent,
-    children: [
-      { path: ':id', component: ArchivedPatientDetailComponent }
-    ],
   },
   { path: '**', redirectTo: '/patients', pathMatch: 'full' },
 ];

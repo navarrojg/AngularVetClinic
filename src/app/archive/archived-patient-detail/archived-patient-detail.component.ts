@@ -21,7 +21,12 @@ export class ArchivedPatientDetailComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
-      this.patient = this.patientService.getPatient(this.id);
+      this.patient = this.patientService.getArchivedPatient(this.id);
+      console.log(this.id);
     });
+  }
+
+  onGoBack() {
+    this.router.navigate(['../', { relativeTo: this.route }]);
   }
 }

@@ -8,22 +8,4 @@ import { Subscription } from 'rxjs';
   templateUrl: './archive.component.html',
   styleUrls: ['./archive.component.css'],
 })
-export class ArchiveComponent implements OnInit, OnDestroy {
-  archivedPatients: Patient[] = [];
-  subscription: Subscription;
-
-  constructor(private patientService: PatientsService) {}
-
-  ngOnInit() {
-    this.subscription = this.patientService.archivedPatientsChanged.subscribe(
-      (archivedPatiens: Patient[]) => {
-        this.archivedPatients = archivedPatiens;
-      }
-    );
-    this.archivedPatients = this.patientService.getArchivePatinets();
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
-}
+export class ArchiveComponent {}

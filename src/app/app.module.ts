@@ -20,8 +20,9 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ArchiveComponent } from './archive/archive.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
-import { ArchiveItemComponent } from './archive/archive-item/archive-item.component';
+import { ArchiveItemComponent } from './archive/archive-desktop/archive-item/archive-item.component';
 import { ArchivedPatientDetailComponent } from './archive/archived-patient-detail/archived-patient-detail.component';
+import { ArchiveDesktopComponent } from './archive/archive-desktop/archive-desktop.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { ArchivedPatientDetailComponent } from './archive/archived-patient-detai
     LoadingSpinnerComponent,
     ArchiveItemComponent,
     ArchivedPatientDetailComponent,
+    ArchiveDesktopComponent,
   ],
   imports: [
     BrowserModule,
