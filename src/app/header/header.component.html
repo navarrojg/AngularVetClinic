@@ -15,8 +15,8 @@
                 <li routerLinkActive="active">
                     <a routerLink="/medicine-needs-list" *ngIf="isAuthenticated">Needed Medicine</a>
                 </li>
-                <li routerLinkActive="active">
-                    <a routerLink="/important-notes" *ngIf="isAuthenticated">Flashcards</a>
+                <li routerLinkActive="active" class="urgent">
+                    <a routerLink="/important-notes" *ngIf="isAuthenticated">❗ Urgent ❗</a>
                 </li>
                 <li routerLinkActive="active">
                     <a routerLink="/archive" *ngIf="isAuthenticated">Archive</a>
