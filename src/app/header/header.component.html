@@ -7,19 +7,19 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li routerLinkActive="active">
-                    <a routerLink="/patients" *ngIf="isAuthenticated">Patients</a>
+                    <a routerLink="/patients" *ngIf="isAuthenticated">Patients 🐴</a>
                 </li>
                 <li routerLinkActive="active">
-                    <a routerLink="/auth" *ngIf="!isAuthenticated">Authenticate</a>
+                    <a routerLink="/auth" *ngIf="!isAuthenticated">Authenticate 🛡</a>
                 </li>
                 <li routerLinkActive="active">
-                    <a routerLink="/medicine-needs-list" *ngIf="isAuthenticated">Needed Medicine</a>
+                    <a routerLink="/medicine-needs-list" *ngIf="isAuthenticated">Needed Medicine 💊</a>
                 </li>
                 <li routerLinkActive="active" class="urgent">
                     <a routerLink="/important-notes" *ngIf="isAuthenticated">❗ Urgent ❗</a>
                 </li>
                 <li routerLinkActive="active">
-                    <a routerLink="/archive" *ngIf="isAuthenticated">Archive</a>
+                    <a routerLink="/archive" *ngIf="isAuthenticated">Archive 📂</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
