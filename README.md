@@ -3,6 +3,7 @@
 <h3 align="center">Veterinary Clinic Angular app</h3>
 
 <p align="left">
+  
   - Veterinary Clinic created on framework Angular, hosted on Firebase,
 
   - App is secured by authenthication. 
