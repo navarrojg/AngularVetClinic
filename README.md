@@ -4,9 +4,12 @@
 
 <p align="left">
   
-  - Veterinary Clinic created on framework Angular, hosted on Firebase,
+  - Veterinary Clinic created on framework Angular,
 
-  - App is secured by authenthication. 
+  - Hosted on Firebase,
+
+  - App is secured by authenthication,
+  - 
 </p>
 
 <h3 align="left">Languages and Tools used in project:</h3>
